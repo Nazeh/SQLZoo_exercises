@@ -42,14 +42,27 @@ SELECT name, ROUND(population/1000000,2) AS 'population Mil.',
 
 /* 10-show per-capita GDP for the trillion dollar 
    countries to the nearest $1000. */
+SELECT name, ROUND(gdp/population, -3) AS 'per-capita GDP' FROM world
+WHERE gdp > 1000000000000;
 
 /* 11-Show the name and capital where 
    the name and the capital have 
    the same number of characters. */
+SELECT name, capital FROM world
+WHERE LENGTH(name) = LENGTH(capital);
 
 /* 12-Show the name and the capital where the first letters of 
    each match. Don't include countries 
    where the name and the capital are the same word. */
+SELECT name, capital FROM world
+WHERE LEFT(name,1) = LEFT(capital,1) AND name <> capital;
 
 /* 13-Find the country that has all the vowels 
    and no spaces in its name. */
+SELECT name FROM world
+WHERE name NOT LIKE '% %'
+  AND name LIKE '%u%' 
+  and name LIKE '%a%' 
+  and name LIKE '%o%' 
+  and name LIKE '%i%'
+  and name LIKE '%e%';
