@@ -13,8 +13,8 @@ WHERE population >= 200000000;
 
 /* 4-Show the name and population in millions 
    for the countries of the continent 'South America'. */
-SELECT name, population/1000000 FROM world
-WHERE continent = 'South America';
+SELECT name, population/1000000 AS 'population Mil.' FROM world
+WHERE continent = 'South America'
 
 /* 5-Show the name and population for France, Germany, Italy */
 SELECT name, population FROM world
@@ -27,12 +27,18 @@ WHERE name LIKE '%United%';
 
 /* 7-Show the countries 
    that are big by area or big by population. */
+SELECT name, population, area FROM world
+WHERE area > 3000000 OR population > 250000000;
    
 /* 8-Show the countries that are big by area or 
    big by population but not both */
+SELECT name, population, area FROM world
+WHERE area > 3000000 XOR population > 250000000;
    
 /* 9-For South America show population in millions and 
    GDP in billions both to 2 decimal places. */
+SELECT name, ROUND(population/1000000,2) AS 'population Mil.',
+       ROUND(gdp/1000000000,2) AS 'GDP Bil.' FROM world;
 
 /* 10-show per-capita GDP for the trillion dollar 
    countries to the nearest $1000. */
